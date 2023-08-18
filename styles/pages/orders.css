@@ -1,7 +1,57 @@
-.your-orders-heading {
-    position: fixed;
-    top: 90px;
-    left: 255px;
+.main {
+    max-width: 850px;
+    margin-top: 90px;
+    margin-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+  
+    /* margin-left: auto;
+       margin-right auto;
+       Is a trick for centering an element horizontally
+       without needing a container. */
+       margin-left: auto;
+       margin-right: auto;
+  }
+
+
+.page-title {
     font-size: 24px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
+
+.order-header {
+    width: 800px;
+    border: solid 1px rgb(173, 171, 171);
+    padding: 20px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background-color: rgb(240, 234, 234);
+    margin-bottom: 10px;
+}
+
+.order-header-left-section {
+    width: 200px;
+}
+
+.order-header-label {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.order-header,
+.order-header-left-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-details-grid img {
+    width: 100px;
+    display: flex;
+}
+
+.orders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 50px;
+  }
