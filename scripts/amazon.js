@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js"
+import { addToCart, updateCartQuantity } from "../data/cart.js"
 import { products } from "../data/products.js";
 
 let productsHtml = '';
@@ -59,43 +59,26 @@ products.forEach((product) => {
 
 document.querySelector(".js-products-grid").innerHTML = productsHtml
 
+function addAddedIcon(productId) {
+  const addedMessage = document.querySelector(`.js-added-to-cart-image-${productId}`);
+  addedMessage.classList.add("show-product-as-added");
+  document.querySelector(".show-product-as-added").style.opacity = 1
+}
+
 document.querySelectorAll(".js-add-to-cart")
   .forEach((button) => {
     let addedMessageTimeoutId;
-    
     button.addEventListener("click", () => {
       const { productId } = button.dataset;
-      let matchingItem;
-      let cartQuantity = 0;
-      cart.forEach((item) => {
-        if (item.productId === productId) {
-          matchingItem = item;
-        }
-      });
 
-      const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-        
-      if (matchingItem) matchingItem.quantity += quantity;
-      else {
-        cart.push({
-          productId,
-          quantity,
-        })
-      }
-
-     
-      cart.forEach((item) => {
-          cartQuantity += item.quantity
-      })
-      document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-      const addedMessage = document.querySelector(`.js-added-to-cart-image-${productId}`);
-      addedMessage.classList.add("show-product-as-added");
-      document.querySelector(".show-product-as-added").style.opacity = 1
+      addToCart(productId)
+      updateCartQuantity();
+      addAddedIcon(productId)
+      
       setTimeout(() => {
         if (addedMessageTimeoutId) {
           clearTimeout(addedMessageTimeoutId)
         }
-
         const timeoutId = setTimeout(() => {
           document.querySelector(".show-product-as-added").style.opacity = 0
           addedMessage.classList.remove("show-product-as-added");
