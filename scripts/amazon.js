@@ -58,6 +58,7 @@ products.forEach((product) => {
   `;
 })
 
+document.querySelector(".js-cart-quantity").innerHTML = updateCartQuantity();
 document.querySelector(".js-products-grid").innerHTML = productsHtml
 
 function addAddedIcon(productId) {
@@ -73,7 +74,8 @@ document.querySelectorAll(".js-add-to-cart")
       const { productId } = button.dataset;
 
       addToCart(productId)
-      updateCartQuantity();
+      const cartItems = updateCartQuantity();
+      document.querySelector(".js-cart-quantity").innerHTML = cartItems;
       addAddedIcon(productId)
       
       setTimeout(() => {
